@@ -19,6 +19,12 @@ This repository provides a **Jupyter Notebook** that demonstrates how to extract
 - Spectral Centroid
 - Bandwidth
 
+## Time-Domain Features
+### Root-Mean-Square (RMS) Energy
+**RMS Energy** measures the magnitude of the audio signal over time. It calculates the square root of the average of the squared amplitudes of the signal. This provides a sense of the overall loudness or intensity of the sound.
+Formula:
+$$RMS = sqrt((1 / N) * sum(x[i]^2 for i in range(N)))$$
+where N is the number of samples in the segment. 
 ## References 
 Valerio Velardo - [Audio Signal Processing For ML](https://github.com/musikalkemist/AudioSignalProcessingForML)
 
