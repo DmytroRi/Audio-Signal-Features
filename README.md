@@ -25,19 +25,71 @@ This repository provides a **Jupyter Notebook** that demonstrates how to extract
   
 Formula:  
 ```math
-RMS = \sqrt{\frac{1}{N} \sum_{i=1}^{N} x[i]^2}
+RMS(t) = \sqrt{\frac{1}{K} \sum_{k=t*K}^{(t+1)K-1} s[k]^2}
 ```
-where N is the number of samples in the segment.   
+where:  
+- $K$ is the frame size,
+- $k=t*K$ is the first element of frame $t$,
+- $(t+1)K-1$ is the last element of frmae $t$
+- $s[k]^2$ is the energy of $k$-th sample  
 
-**What it tells an ML algorithm:**
+#### **What it tells an ML algorithm:**
 - **Loudness or Energy:** RMS Energy gives a measure of the energy (loudness) in the audio signal.
 - **Dynamics:** it helps register variations in loudness.
 
-**Use cases:**
-- **Music Genre Classification** (different genres of music have unique loudness dynamics)
-- **Speech Recognition** (RMS might help distinguish between voiced and unvoiced sounds)
-- **Emotion Detection in Speech** (some emotions have higher event of loudness e.g. excitment or anger)
-- **Audio Event Detection** (detection of claps or bangs)
+##### **Use cases:**
+- **Music Genre Classification**
+  - Different genres of music have unique loudness dynamics. For example, classical music might have more variation, while electronic music tends to be consistently loud.
+- **Speech Recognition**
+  - RMS can help distinguish between voiced and unvoiced sounds. Voiced sounds generally have higher energy.
+  - Detecting speech activity
+- **Emotion Detection in Speech**
+  - RMS can help identify emotional states like anger or excitement where the loudness levels are typically higher.  
+- **Audio Event Detection**
+  - Useful in detecting events such as claps, bangs, or other transient sounds where energy spikes.
+
+
+      
+### Zero-Crossing Rate    
+**Zero-Crossing Rate** measures how frequently the signal crosses the zero amplitude level (time axis) within a given time frame. It counts the number of times the audio waveform changes sign (from positive to negative and vice versa).
+    
+Formula:  
+```math
+ZCR(t) = \frac{1}{2} \sum_{k=K*t}^{(t+1)K-1} \left| \text{sgn}(s[k]) - \text{sgn}(s[k+1]) \right|
+```
+where:  
+- $K$ is the frame size,
+- $k=t*K$ is the first element of frame $t$,
+- $(t+1)K-1$ is the last element of frmae $t$
+- $sgn(s[k])$ is the sign of $k$-th sample  
+     
+     
+#### **What it tells an ML algorithm:**
+- **Frequency Content:** a high zero-crossing rate indicates that the signal contains high-frequency components (e.g. noisy signals).
+
+##### **Use cases:**
+- **Music Genre Classification**
+  - Instruments like guitars or violins often produce smooth waveforms (low ZCR), while     percussive instruments exhibit high ZCR.
+  - Identify sections of music with rapid transitions or percussive beats.
+- **Speech Recognition**
+  - Differentiate between vowels and consonants, as voiced sounds have low ZCR.
+  - Detect when speech starts and ends by analyzing signal frequency content.
+- **Emotion Detection in Speech**
+  - Unvoiced components are higher during emotions such as anger or frustration, leading to increased ZCR.
+- **Audio Event Detection**
+  - Useful for detecting sharp, transient noises like clicks, keyboard typing, or environmental sounds (e.g., snapping fingers).
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## References 
 Valerio Velardo - [Audio Signal Processing For ML](https://github.com/musikalkemist/AudioSignalProcessingForML)
