@@ -22,9 +22,23 @@ This repository provides a **Jupyter Notebook** that demonstrates how to extract
 ## Time-Domain Features
 ### Root-Mean-Square (RMS) Energy
 **RMS Energy** measures the magnitude of the audio signal over time. It calculates the square root of the average of the squared amplitudes of the signal. This provides a sense of the overall loudness or intensity of the sound.  
+  
 Formula:  
-$$RMS = \sqrt{\frac{1}{N} \sum_{i=1}^{N} x[i]^2}$$  
-where N is the number of samples in the segment. 
+```math
+RMS = \sqrt{\frac{1}{N} \sum_{i=1}^{N} x[i]^2}
+```
+where N is the number of samples in the segment.   
+
+**What it tells an ML algorithm:**
+- **Loudness or Energy:** RMS Energy gives a measure of the energy (loudness) in the audio signal.
+- **Dynamics:** it helps register variations in loudness.
+
+**Use cases:**
+- **Music Genre Classification** (different genres of music have unique loudness dynamics)
+- **Speech Recognition** (RMS might help distinguish between voiced and unvoiced sounds)
+- **Emotion Detection in Speech** (some emotions have higher event of loudness e.g. excitment or anger)
+- **Audio Event Detection** (detection of claps or bangs)
+
 ## References 
 Valerio Velardo - [Audio Signal Processing For ML](https://github.com/musikalkemist/AudioSignalProcessingForML)
 
