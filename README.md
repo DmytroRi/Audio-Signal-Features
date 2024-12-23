@@ -37,7 +37,7 @@ where:
 - **Loudness or Energy:** RMS Energy gives a measure of the energy (loudness) in the audio signal.
 - **Dynamics:** it helps register variations in loudness.
 
-##### **Use cases:**
+#### **Use cases:**
 - **Music Genre Classification**
   - Different genres of music have unique loudness dynamics. For example, classical music might have more variation, while electronic music tends to be consistently loud.
 - **Speech Recognition**
@@ -67,7 +67,7 @@ where:
 #### **What it tells an ML algorithm:**
 - **Frequency Content:** a high zero-crossing rate indicates that the signal contains high-frequency components (e.g. noisy signals).
 
-##### **Use cases:**
+#### **Use cases:**
 - **Music Genre Classification**
   - Instruments like guitars or violins often produce smooth waveforms (low ZCR), while     percussive instruments exhibit high ZCR.
   - Identify sections of music with rapid transitions or percussive beats.
@@ -99,7 +99,7 @@ where:
 - **Loudness Peaks:** Helps identify the highest points of intensity in the signal, providing insight into its dynamics.
 - **Temporal Structure:** Tracks changes in loudness over time, useful for identifying rhythmic patterns or onsets of sound events.
 
-##### **Use cases:**
+#### **Use cases:**
 - **Speech Processing**
   - Detecting when speech starts or ends based on sudden changes in loudness.
   - Emotional speech often shows greater variations in the amplitude envelope compared to neutral speech.
@@ -134,7 +134,7 @@ where:
 - **Frequency Content:** Identifies the presence and intensity of specific frequencies in the signal.
 - **Harmonics and Periodicity:** Detect patterns and periodic structures in the audio signal (by analyzing the spacing and intensity of peaks, periodicity can be detected).
 
-##### **Use cases:**
+#### **Use cases:**
 - **Speech Processing**
   - Analyzing the frequency patterns unique to a speaker's voice (speacker recognition).
   - Differentiating between voiced and unvoiced sounds.
@@ -170,7 +170,7 @@ where:
 - **Time-Frequency Patterns:** Provides detailed information about how sound energy is distributed across time and frequency.
 - **Harmonic and Transient Events:** Helps identify tonal patterns (e.g., notes in music) and transient events (e.g., claps or plosives in speech).
 
-##### **Use cases:**
+#### **Use cases:**
 - **Speech Processing**
   - Detecting phonemes based on their unique time-frequency patterns.
   - Capturing individual vocal characteristics present in the spectral patterns.
