@@ -30,8 +30,8 @@ RMS(t) = \sqrt{\frac{1}{K} \sum_{k=K*t}^{K(t+1)-1} s[k]^2}
 where:  
 - $K$ is the frame size,
 - $k=K*t$ is the first element of frame $t$,
-- $K(t+1)-1$ is the last element of frame $t$
-- $s[k]^2$ is the energy of $k$-th sample  
+- $K(t+1)-1$ is the last element of frame $t$,
+- $s[k]^2$ is the energy of $k$-th sample.  
 
 #### **What it tells an ML algorithm:**
 - **Loudness or Energy:** RMS Energy gives a measure of the energy (loudness) in the audio signal.
@@ -42,7 +42,7 @@ where:
   - Different genres of music have unique loudness dynamics. For example, classical music might have more variation, while electronic music tends to be consistently loud.
 - **Speech Recognition**
   - RMS can help distinguish between voiced and unvoiced sounds. Voiced sounds generally have higher energy.
-  - Detecting speech activity
+  - Detecting speech activity.
 - **Emotion Detection in Speech**
   - RMS can help identify emotional states like anger or excitement where the loudness levels are typically higher.  
 - **Audio Event Detection**
@@ -60,8 +60,8 @@ ZCR(t) = \frac{1}{2} \sum_{k=K*t}^{K(t+1)-1} \left| \text{sgn}(s[k]) - \text{sgn
 where:  
 - $K$ is the frame size,
 - $k=K*t$ is the first element of frame $t$,
-- $K(t+1)-1$ is the last element of frame $t$
-- $sgn(s[k])$ is the sign of $k$-th sample  
+- $K(t+1)-1$ is the last element of frame $t$,
+- $sgn(s[k])$ is the sign of $k$-th sample.  
      
      
 #### **What it tells an ML algorithm:**
@@ -91,8 +91,8 @@ A(t) = \max_{k=K*t}^{K(t+1)-1} \left( s[k] \right)
 where:  
 - $K$ is the frame size,
 - $k=K*t$ is the first element of frame $t$,
-- $K(t+1)-1$ is the last element of frame $t$
-- $s[k]$ is the amplitude of $k$-th sample  
+- $K(t+1)-1$ is the last element of frame $t$,
+- $s[k]$ is the amplitude of $k$-th sample.  
      
      
 #### **What it tells an ML algorithm:**
@@ -113,7 +113,38 @@ where:
 
 
 
+## Frequency-Domain Features
+### Discrete Fourier Transform (DFT)
+**The Discrete Fourier Transform (DFT)** is a mathematical operation that transforms a discrete-time signal from the time domain to the frequency domain. It provides information about the signal's frequency components, showing how much of each frequency is present in the signal.
+  
+Formula:  
+```math
+\hat{x}[k] = \sum_{n=0}^{N-1} x[n] \cdot e^{-i \cdot 2\pi \cdot n \cdot \frac{k}{N}}
+```
+where:  
+- $\hat{x}[k]$ represents the magnitude and phase of the $k$-th frequency bin,
+- $k$ the frequency index, ranging from $0$ to $(N-1)$.
+  - Note: we consider only the first half of the frequencies, as they duplicate themselft in the second half   
+    $k = \frac{N}{2} \Rightarrow F(\frac{N}{2}) = \frac{s_{r}}{2}$   
+    where:
+      - $F(\frac{N}{2})$ is the Nyquist Frequency
+      - $s_{r}$ is the sample rate
 
+#### **What it tells an ML algorithm:**
+- **Frequency Content:** Identifies the presence and intensity of specific frequencies in the signal.
+- **Harmonics and Periodicity:** Detect patterns and periodic structures in the audio signal (by analyzing the spacing and intensity of peaks, periodicity can be detected).
+
+##### **Use cases:**
+- **Speech Processing**
+  - Analyzing the frequency patterns unique to a speaker's voice (speacker recognition).
+  - Differentiating between voiced and unvoiced sounds.
+- **Music Genre Classification**
+  - Recogition of instruments as they produce different frequency spectra.
+  -  Identifying harmonic structures in music.
+- **Audio Event Detection**
+  - Detect sounds like sirens or alarms with distinct frequency patterns.  
+- **Environmental Sound Classification**
+  - Different environments (e.g., forest vs. city) have characteristic frequency profiles.
 
 
 
