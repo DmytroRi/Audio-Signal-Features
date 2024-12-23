@@ -140,7 +140,7 @@ where:
   - Differentiating between voiced and unvoiced sounds.
 - **Music Genre Classification**
   - Recogition of instruments as they produce different frequency spectra.
-  -  Identifying harmonic structures in music.
+  - Identifying harmonic structures in music.
 - **Audio Event Detection**
   - Detect sounds like sirens or alarms with distinct frequency patterns.  
 - **Environmental Sound Classification**
@@ -148,7 +148,39 @@ where:
 
 
 
+### Spectrogram
+A **spectrogram** is a visual representation of the frequency content of an audio signal over time. It combines both time and frequency domains by showing how the energy of different frequencies evolves over time. Typically, it is derived by applying the Short-Time Fourier Transform (STFT) to the audio signal and then plotting the magnitude of the resulting frequency components.
+  
+Pipeline:  
+1. The signal is divided into overlapping frames.
+2. Each frame undergoes a Fourier Transform to calculate its frequency content.
+3. The squared magnitude of the frequency components for each frame is plotted as intensity values on a time-frequency grid.
 
+Formula (STFT)
+```math
+S(m, k) = \sum_{n=0}^{N-1} x[n+m*H] \cdot w[n] \cdot e^{-i \cdot 2\pi \cdot n \cdot \frac{k}{N}}
+```
+where:  
+- $S(m, k)$ represents the magnitude of the frequency $k$ at time $m$
+- $H$ is a hop length,
+- $m*H$ is the starting sample of a current frame,
+- $w[n]$ is a windowing funtion.
+
+#### **What it tells an ML algorithm:**
+- **Time-Frequency Patterns:** Provides detailed information about how sound energy is distributed across time and frequency.
+- **Harmonic and Transient Events:** Helps identify tonal patterns (e.g., notes in music) and transient events (e.g., claps or plosives in speech).
+
+##### **Use cases:**
+- **Speech Processing**
+  - Detecting phonemes based on their unique time-frequency patterns.
+  - Capturing individual vocal characteristics present in the spectral patterns.
+- **Music Analysis**
+  - Identifying harmonic structures in music.
+  - Different genres exhibit distinct spectral patterns (e.g., percussive beats in EDM vs. harmonic tones in classical music).
+- **Audio Event Detection**
+  - Recognizing environmental sounds like alarms, footsteps, or animal calls.  
+- **Deep Learning Applications**
+  - Spectrograms are often converted into 2D images and used as input for Convolutional Neural Networks (CNNs), enabling powerful feature extraction.
 
 
 
