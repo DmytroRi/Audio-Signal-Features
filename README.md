@@ -25,12 +25,12 @@ This repository provides a **Jupyter Notebook** that demonstrates how to extract
   
 Formula:  
 ```math
-RMS(t) = \sqrt{\frac{1}{K} \sum_{k=t*K}^{(t+1)K-1} s[k]^2}
+RMS(t) = \sqrt{\frac{1}{K} \sum_{k=K*t}^{K(t+1)-1} s[k]^2}
 ```
 where:  
 - $K$ is the frame size,
-- $k=t*K$ is the first element of frame $t$,
-- $(t+1)K-1$ is the last element of frmae $t$
+- $k=K*t$ is the first element of frame $t$,
+- $K(t+1)-1$ is the last element of frame $t$
 - $s[k]^2$ is the energy of $k$-th sample  
 
 #### **What it tells an ML algorithm:**
@@ -55,12 +55,12 @@ where:
     
 Formula:  
 ```math
-ZCR(t) = \frac{1}{2} \sum_{k=K*t}^{(t+1)K-1} \left| \text{sgn}(s[k]) - \text{sgn}(s[k+1]) \right|
+ZCR(t) = \frac{1}{2} \sum_{k=K*t}^{K(t+1)-1} \left| \text{sgn}(s[k]) - \text{sgn}(s[k+1]) \right|
 ```
 where:  
 - $K$ is the frame size,
-- $k=t*K$ is the first element of frame $t$,
-- $(t+1)K-1$ is the last element of frmae $t$
+- $k=K*t$ is the first element of frame $t$,
+- $K(t+1)-1$ is the last element of frame $t$
 - $sgn(s[k])$ is the sign of $k$-th sample  
      
      
@@ -78,6 +78,38 @@ where:
   - Unvoiced components are higher during emotions such as anger or frustration, leading to increased ZCR.
 - **Audio Event Detection**
   - Useful for detecting sharp, transient noises like clicks, keyboard typing, or environmental sounds (e.g., snapping fingers).
+
+
+      
+### Amplitude Envelope    
+**Amplitude Envelope** captures the maximum amplitude of the audio signal over small time frames. It provides a representation of the signal's loudness dynamics, showing how the volume changes over time. Unlike RMS energy, which gives the average energy, the amplitude envelope tracks the peaks in each frame.
+    
+Formula:  
+```math
+A(t) = \max_{k=K*t}^{K(t+1)-1} \left( s[k] \right)
+```
+where:  
+- $K$ is the frame size,
+- $k=K*t$ is the first element of frame $t$,
+- $K(t+1)-1$ is the last element of frame $t$
+- $s[k]$ is the amplitude of $k$-th sample  
+     
+     
+#### **What it tells an ML algorithm:**
+- **Loudness Peaks:** Helps identify the highest points of intensity in the signal, providing insight into its dynamics.
+- **Temporal Structure:** Tracks changes in loudness over time, useful for identifying rhythmic patterns or onsets of sound events.
+
+##### **Use cases:**
+- **Speech Processing**
+  - Detecting when speech starts or ends based on sudden changes in loudness.
+  - Emotional speech often shows greater variations in the amplitude envelope compared to neutral speech.
+- **Music Analysis**
+  - Instruments like drums exhibit sharp amplitude envelopes, while strings have smoother changes.
+  - Detect beats in rhythmic music by analyzing sharp envelope spikes.
+- **Sound Event Detection**
+  - Recognizing transient sounds (e.g., claps, footsteps) which produce sharp peaks in the envelope.
+- **Environmental Sound Classification**
+  - Identify consistent sounds (e.g., rain) versus dynamic sounds (e.g., alarms or bird calls).
 
 
 
