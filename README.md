@@ -203,7 +203,7 @@ where:
 
 The Mel scale is computed as:
 ```math
-Mel(f) = 2595 \cdot \log_{10}(1 + \frac{f}{700})
+Mel(f) = 2595 \cdot \log_{10}(1 + \frac{f}{500})
 ```
 
 #### **What it tells an ML algorithm:**
