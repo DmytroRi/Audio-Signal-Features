@@ -161,7 +161,7 @@ Formula (STFT)
 S(m, k) = \sum_{n=0}^{N-1} x[n+m*H] \cdot w[n] \cdot e^{-i \cdot 2\pi \cdot n \cdot \frac{k}{N}}
 ```
 where:  
-- $S(m, k)$ represents the magnitude of the frequency $k$ at time $m$
+- $S(m, k)$ represents the magnitude of the frequency $k$ at time $m$,
 - $H$ is a hop length,
 - $m*H$ is the starting sample of a current frame,
 - $w[n]$ is a windowing funtion.
@@ -183,9 +183,47 @@ where:
   - Spectrograms are often converted into 2D images and used as input for Convolutional Neural Networks (CNNs), enabling powerful feature extraction.
 
 
+### Mel Spectrogram
+A **Mel Spectrogram** is a variation of the spectrogram where the frequency axis is transformed to the Mel scale, a perceptual scale that mimics how humans perceive sound. The Mel scale places more emphasis on lower frequencies (where human hearing is more sensitive) and less emphasis on higher frequencies.
+  
+Pipeline:  
+1. Start with the spectrogram.
+2. Apply a set of overlapping triangular Mel filter banks to the power or magnitude spectrum.
+![ Mel filter banks](https://siggigue.github.io/pyfilterbank/_images/melbank-1_00.png)
+3. Take the logarithm of the filtered values for dynamic range compression.
+
+Formula
+```math
+M(m, t) = \sum_{f=0}^{F-1} |X(t, f)|^2 \cdot H_m(f)
+```
+where:  
+- $M(m, t)$ is the Mel spectrogram at Mel filter bank $m$ and time frame $t$,
+- $X(t, f)$ is the STFT magnitude at time $t$ and frequency $f$.
+- $H_m(f)$ is the $m$-th Mel filter, defined to map linear frequencies $f$ to the Mel scale.
+
+The Mel scale is computed as:
+```math
+Mel(f) = 2595 \cdot \log_{10}(1 + \frac{f}{700})
+```
+
+#### **What it tells an ML algorithm:**
+- **Perceptually Relevant Features:** Encodes sound in a way that aligns with human auditory perception.
+- **Frequency Emphasis:** Prioritizes frequencies that are most meaningful for human hearing, which is particularly useful in speech and music processing.
+
+#### **Use cases:**
+- **Speech Processing**
+  - Mel spectrograms capture the subtle frequency changes that reflect emotional tones.
+- **Music Analysis**
+  - Emphasizing tonal and harmonic features aligned with human perception which helps to classify a genre.
+  - Encodes the distinct timbre of instruments effectively.
+- **Audio Event Detection**
+  - Identifying environmental sounds like sirens or animal calls, which often have unique perceptual frequency patterns.  
+- **Deep Learning Applications**
+  - Mel spectrograms are commonly used as inputs to CNNs and other deep learning models for audio classification tasks.
 
 
 
 ## References 
-Valerio Velardo - [Audio Signal Processing For ML](https://github.com/musikalkemist/AudioSignalProcessingForML)
+Valerio Velardo - [Audio Signal Processing For ML](https://github.com/musikalkemist/AudioSignalProcessingForML)   
+PyFilterbank - [Mel Filter Bank](https://siggigue.github.io/pyfilterbank/melbank.html)
 
