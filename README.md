@@ -187,7 +187,7 @@ where:
 A **Mel Spectrogram** is a variation of the spectrogram where the frequency axis is transformed to the Mel scale, a perceptual scale that mimics how humans perceive sound. The Mel scale places more emphasis on lower frequencies (where human hearing is more sensitive) and less emphasis on higher frequencies.
   
 Pipeline:  
-1. Start with the spectrogram.
+1. Start with the Spectrogram.
 2. Apply a set of overlapping triangular Mel filter banks to the power or magnitude spectrum.
 ![ Mel filter banks](https://siggigue.github.io/pyfilterbank/_images/melbank-1_00.png)
 3. Take the logarithm of the filtered values for dynamic range compression.
@@ -221,6 +221,41 @@ Mel(f) = 2595 \cdot \log_{10}(1 + \frac{f}{700})
 - **Deep Learning Applications**
   - Mel spectrograms are commonly used as inputs to CNNs and other deep learning models for audio classification tasks.
 
+
+
+### Mel-Frequency Cepstral Coefficients (MFCCs)
+**MFCCs** are a compact representation of the audio signal that captures its perceptually relevant features. They summarize the spectral envelope of a signal by analyzing its frequency content on the Mel scale and then applying a discrete cosine transform (DCT) to decorrelate the features and reduce dimensionality.
+  
+Pipeline:  
+1. Start with the Mel Spectrogram.
+2. Applying the common logarithm to compress the dynamic range.
+3. Performing a **Discrete Cosine Transform** (simplified version of Fourier Transform) on the Mel filter bank energies to produce the coefficients..
+
+Formula
+```math
+C(n) = \sum_{m=0}^{N-1} \log [M(m, t)] \cdot \cos \left( \frac{\pi n (m + 0.5)}{N} \right)
+```
+where:  
+- $C(n)$ is the $n$-th MFCC,
+- $M(m, t)$ is the Mel Spectrogram,
+- $N$ is the number of Mel filters.
+
+#### **What it tells an ML algorithm:**
+- **Compact Audio Features:** MFCCs reduce the data size while retaining the most important audio features.
+- **Speaker Characteristics:** Encodes the vocal tract information, which is useful in identifying individual speakers.
+- **Phonetic Content:** Captures the spectral information related to phonemes in speech.
+
+#### **Use cases:**
+- **Speech Processing**
+  - MFCCs are the standard feature for converting speech into text.
+  - Encodes the unique vocal characteristics of individuals (speaker identification). 
+- **Music Analysis**
+  - Summarizes the tonal and timbral characteristics of music which helps to classify a genre.
+  - Captures distinct timbral patterns associated with different instruments.
+- **Audio Event Detection**
+  - Identifies events such as footsteps, door slams, or alarms based on their characteristic spectral shapes.   
+- **Emotion Recognition in Speech**
+  - Encodes subtle variations in speech that correlate with emotional states.
 
 
 ## References 
