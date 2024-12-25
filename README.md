@@ -229,7 +229,7 @@ Mel(f) = 2595 \cdot \log_{10}(1 + \frac{f}{500})
 Pipeline:  
 1. Start with the Mel Spectrogram.
 2. Applying the common logarithm to compress the dynamic range.
-3. Performing a **Discrete Cosine Transform** (simplified version of Fourier Transform) on the Mel filter bank energies to produce the coefficients..
+3. Performing a **Discrete Cosine Transform** (simplified version of Fourier Transform) on the Mel filter bank energies to produce the coefficients.
 
 Formula
 ```math
@@ -256,6 +256,36 @@ where:
   - Identifies events such as footsteps, door slams, or alarms based on their characteristic spectral shapes.   
 - **Emotion Recognition in Speech**
   - Encodes subtle variations in speech that correlate with emotional states.
+
+### Band Energy Ratio
+**Band Energy Ratio (BER)** is a feature that measures the proportion of energy in a specific frequency band relative to the total energy of the audio signal. It helps in identifying which frequency ranges dominate the signal, providing insights into its spectral distribution.
+
+Formula
+```math
+BER = \frac{\sum_{k=k_1}^{k_2} |X[k]|^2}{\sum_{k=0}^{K-1} |X[k]|^2}
+```
+where:  
+- $X[k]$ is the magnitude spectrum at frequency bin $k$,
+- $k_1$ and $k_2$ are the frequency bins defining the band of interest,
+- $K$ is the total number of frequency bins.
+
+#### **What it tells an ML algorithm:**
+- **Frequency Band Dominance:** Indicates whether certain frequency bands carry most of the signal’s energy.
+- **Signal Characteristics:** Helps differentiate sounds with dominant low-frequency energy (e.g., bass-heavy music) from those with high-frequency emphasis (e.g., fricative sounds in speech).
+
+#### **Use cases:**
+- **Speech Processing**
+  - Voiced sounds tend to have more energy in the lower frequencies, while unvoiced sounds have higher-frequency energy (voiced vs. unvoiced detection).
+- **Music Analysis**
+  - Different genres emphasize different frequency ranges (e.g., EDM might emphasize bass frequencies, while classical music is more balanced).
+  - Instruments produce energy in specific frequency bands (e.g., drums in low frequencies, violins in mid-high frequencies).
+- **Audio Event Detection**
+  - Identify specific sounds based on their frequency bands, such as alarms (high frequency) or footsteps (low frequency).  
+- **Environmental Sound Classification**
+  - Differentiating between environments with low-frequency sounds (e.g., traffic noise) versus high-frequency sounds (e.g., bird calls).
+
+
+
 
 
 ## References 
