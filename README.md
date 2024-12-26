@@ -284,7 +284,30 @@ where:
 - **Environmental Sound Classification**
   - Differentiating between environments with low-frequency sounds (e.g., traffic noise) versus high-frequency sounds (e.g., bird calls).
 
+### Spectral Centroid
+**The Spectral Centroid** is a feature that measures the "center of mass" of the spectrum. It indicates where the majority of the signal's energy is concentrated in the frequency domain. A higher spectral centroid corresponds to a "brighter" or "sharper" sound, while a lower centroid indicates a "darker" or "warmer" sound.
 
+Formula
+```math
+C = \frac{\sum_{k=0}^{K-1} f[k] \cdot |X[k]|}{\sum_{k=0}^{K-1} |X[k]|}
+```
+where:  
+- $f[k]$ is the frequency of the $k$-th bin,
+- $|X[k]|$ is the magnitude of the spectrum at frequency bin $k$,
+- $K$ is the total number of frequency bins.
+
+#### **What it tells an ML algorithm:**
+- **Brightness of Sound:** Higher spectral centroids indicate high-frequency dominance, associated with "bright" sounds.
+- **Timbre Characteristics:** Useful for distinguishing instruments or sounds with varying frequency distributions.
+
+#### **Use cases:**
+- **Speech Processing**
+  - Angry or excited speech often has a higher centroid than calm or sad speech.
+- **Music Analysis**
+  - Brighter genres (e.g., electronic) tend to have higher spectral centroids, while darker genres (e.g., classical or jazz) have lower centroids.
+  - Helps differentiate between instruments like violins (higher centroid) and cellos (lower centroid).
+- **Environmental Sound Classification**
+  - Classifying environments like urban settings (higher centroid due to noise) versus natural settings (lower centroid due to softer sounds).
 
 
 
