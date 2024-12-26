@@ -309,6 +309,35 @@ where:
 - **Environmental Sound Classification**
   - Classifying environments like urban settings (higher centroid due to noise) versus natural settings (lower centroid due to softer sounds).
 
+### Spectral Bandwidth
+**The Spectral Bandwidth** measures the spread or width of the frequencies around the Spectral Centroid. It quantifies how "wide" the frequency distribution is, reflecting whether the sound is sharp and focused or broad and diffuse.   
+
+Formula
+```math
+BW = \frac{\sum_{k=0}^{K-1} |X[k]| \cdot (f[k] - C)^2}{\sum_{k=0}^{K-1} |X[k]|}
+```
+where:  
+- $BW$ is the spectral bandwidth,
+- $C$ is the spectral centroid,
+- $|X[k]|$ is the magnitude of the spectrum at frequency bin $k$,
+- $f[k]$ is the frequency of the $k$-th bin
+- $K$ is the total number of frequency bins.
+
+#### **What it tells an ML algorithm:**
+- **Frequency Distribution:** Indicates whether the sound has concentrated or widely spread frequencies.
+- **Sound Texture:** Helps differentiate sharp, high-energy sounds from smoother, more diffuse ones.
+
+#### **Use cases:**
+- **Speech Processing**
+  - Excited or angry speech tends to have a wider spectral bandwidth compared to calm speech.
+- **Music Analysis**
+  - Instruments like cymbals have broader bandwidths, while flutes or violins tend to have narrower bandwidths.
+  - Brighter, noisier genres (e.g., EDM) often have larger bandwidths, while softer genres (e.g., classical) have smaller bandwidths.
+- **Environmental Sound Classification**
+  - Helps classify environments with broad-band noise (e.g., urban traffic) versus narrow-band noise (e.g., bird calls).
+- **Audio Event Detection**
+  - Distinguishing between sharp, transient sounds (e.g., claps or crashes) with high bandwidth and continuous tones with low bandwidth.    
+ 
 
 
 ## References 
