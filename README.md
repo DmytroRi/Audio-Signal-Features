@@ -194,7 +194,7 @@ Pipeline:
 
 Formula
 ```math
-M(m, t) = \sum_{f=0}^{F-1} |X(t, f)|^2 \cdot H_m(f)
+M(m, t) = \sum_{f=0}^{F-1} X(t, f)^2 \cdot H_m(f)
 ```
 where:  
 - $M(m, t)$ is the Mel spectrogram at Mel filter bank $m$ and time frame $t$,
@@ -262,7 +262,7 @@ where:
 
 Formula
 ```math
-BER = \frac{\sum_{k=k_1}^{k_2} |X[k]|^2}{\sum_{k=0}^{K-1} |X[k]|^2}
+BER = \frac{\sum_{k=k_1}^{k_2} X[k]^2}{\sum_{k=0}^{K-1} X[k]^2}
 ```
 where:  
 - $X[k]$ is the magnitude spectrum at frequency bin $k$,
