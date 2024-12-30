@@ -124,7 +124,7 @@ Formula:
 where:  
 - $\hat{x}[k]$ represents the magnitude and phase of the $k$-th frequency bin,
 - $k$ the frequency index, ranging from $0$ to $(N-1)$.
-  - Note: we consider only the first half of the frequencies, as they duplicate themselft in the second half   
+  - Note: we consider only the first half of the frequencies, as they duplicate themselves in the second half   
     $k = \frac{N}{2} \Rightarrow F(\frac{N}{2}) = \frac{s_{r}}{2}$   
     where:
       - $F(\frac{N}{2})$ is the Nyquist Frequency
@@ -136,10 +136,10 @@ where:
 
 #### **Use cases:**
 - **Speech Processing**
-  - Analyzing the frequency patterns unique to a speaker's voice (speacker recognition).
+  - Analyzing the frequency patterns unique to a speaker's voice (speaker recognition).
   - Differentiating between voiced and unvoiced sounds.
 - **Music Genre Classification**
-  - Recogition of instruments as they produce different frequency spectra.
+  - Recognition of instruments as they produce different frequency spectra.
   - Identifying harmonic structures in music.
 - **Audio Event Detection**
   - Detect sounds like sirens or alarms with distinct frequency patterns.  
@@ -164,7 +164,7 @@ where:
 - $S(m, k)$ represents the magnitude of the frequency $k$ at time $m$,
 - $H$ is a hop length,
 - $m*H$ is the starting sample of a current frame,
-- $w[n]$ is a windowing funtion.
+- $w[n]$ is a windowing function.
 
 #### **What it tells an ML algorithm:**
 - **Time-Frequency Patterns:** Provides detailed information about how sound energy is distributed across time and frequency.
